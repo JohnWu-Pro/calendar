@@ -1,0 +1,226 @@
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin-top: 24px;
+}
+
+a, a:hover, a:visited {
+  color: #d0d0d0;
+  text-decoration: none;
+}
+
+.cld {
+  width: 357px; /*51 * 7*/
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cld .title {
+  display: flex;
+  background: #a4221a;
+  border-radius: 2px;
+  color: yellow;
+  font-size: 15px;
+  margin-bottom: 2px;
+  padding: 0 6px 0 4px;
+  white-space: nowrap;
+}
+.cld .title select {
+  color: yellow;
+  background: #a4221a;
+}
+.cld .title .animal {
+  margin: 0 -2px 0 -6px;
+}
+.cld .title .help {
+  margin-left: auto;
+}
+.cld .title .help a {
+  color: yellow;
+  font: bold 16px 'Times New Roman';
+}
+.cld .row {
+  display: flex;
+}
+.cld .cell {
+  color: black;
+  flex: 1 1 0;
+}
+.cld .weekend {
+  color: red;
+}
+
+.cld .head .cell {
+  background: #e0e0e0;
+  margin: 0 1px;
+}
+
+.cld .body {
+  z-index: 0; position: static; /* default z-index and position */
+}
+.cld .body .cell {
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+.cld .body .cell.unresolvable {
+  cursor: default;
+}
+.cld .body .cell.out-of-month {
+  background: rgba(255, 255, 255, 0.90);
+}
+.cld .body .cell .background {
+  z-index: -10; position: absolute;
+  height: 51px;
+  width: 51px;
+  margin: 0;
+}
+.cld .body .cell .background.today {
+  background: url('images/webdings-Y-red.gif') 2px -2px / 51px 52px no-repeat;
+}
+.cld .body .cell .solar {
+  z-index: -5; position: relative;
+  font: bold 24px 'Arial Black';
+  margin: 0;
+}
+.cld .body .cell .solar.on {
+  color: blue;
+}
+.cld .body .cell .solar.off {
+  color: red;
+}
+.cld .body .cell .note {
+  z-index: -5; position: relative;
+  font: normal 12px '宋体';
+  white-space: nowrap;
+  margin: 0;
+}
+.cld .body .cell .note.holiday {
+  color: red;
+}
+.cld .body .cell .note.solar.festival {
+  color: blue;
+}
+.cld .body .cell .note.lunar.festival {
+  color: fuchsia;
+}
+.cld .body .cell .note.solar-term {
+  color: limegreen;
+}
+.cld .body .cell .note.first-day {
+  font: bold 11px '宋体';
+}
+
+.cld .ctl {
+  margin: 24px 12px 0 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.cld .ctl .cmd {
+  border: 1px outset #eaeaea;
+  border-radius: 3px;
+  padding: 0 6px 2px 6px;
+  display: inline-block;
+  font: normal 15px 'Arial Black';
+  text-align: center;
+  width: 36px;
+  cursor: pointer;
+}
+
+.cld .details {
+  z-index: 0; position: static; /* default z-index and position */
+  margin: 24px auto 6px auto;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+}
+.cld .details .content {
+  margin: 0 auto;
+  text-align: left;
+  border: solid 3px navy;
+  border-radius: 3px;
+  background-color: navy;
+  font: normal 15px '宋体';
+}
+.cld .details .content.slide-up {
+  transform: translate(0, -105%);
+  opacity: 0;
+  transition: transform 2s ease 5s, opacity 2s ease 5s;
+}
+.cld .details .date .solar {
+  color: white;
+}
+.cld .details .date .lunar {
+  color: violet;
+}
+.cld .details .date .ganzhi {
+  color: yellow;
+}
+.cld .details .notes {
+  color: white;
+}
+.cld .details .notes .duty.on {
+  background: #88ffcc;
+  color: blue;
+}
+.cld .details .notes .duty.off {
+  background: #ffcccc;
+  color: red;
+}
+.cld .details .notes .solar.holiday {
+  background: #88ffcc;
+  color: red;
+}
+.cld .details .notes .lunar.holiday {
+  background: #ffcccc;
+  color: red;
+}
+.cld .details .notes .solar.festival {
+  background: #ccffcc;
+  color: blue;
+}
+.cld .details .notes .lunar.festival {
+  background: #ffcccc;
+  color: teal;
+}
+.cld .details .notes .solar-term {
+  background: #e0a0ff;
+  color: green;
+}
+.cld .details .notes .memo {
+  background: #ccffcc;
+  color: navy;
+}
+
+.copyright {
+  position: absolute;
+  width: 100%;
+  margin: 2px auto;
+  text-align: center;
+  font: 12px 'New Times Roman';
+  color: #d0d0d0;
+  top: 667px;
+}
+
+.flash {
+  z-index: 10; position: absolute;
+  top: 96px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.flash .content {
+  color: lawngreen;
+  font: bold 128px 'Arial Black';
+}
+.flash .content.fade-out {
+  opacity: 0;
+  transition: opacity 1s linear 0.5s;
+}
+.flash .content .hanzi {
+  font: normal 108px '宋体';
+}

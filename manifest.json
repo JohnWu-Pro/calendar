@@ -1,0 +1,35 @@
+{
+  "name": "中华农历 1900~2099",
+  "short_name": "中华农历",
+  "description": "中华农历，从1900到2099，包含二十四节气、阳历和阴历节假日、调休和调班、属相、天干地支、四柱八字等信息。",
+  "categories": ["日历", "万年历"],
+  "id": "/calendar/index.html",
+  "start_url": "/calendar/index.html?mode=standalone",
+  "scope": "/calendar/",
+  "related_applications": [{
+    "platform": "webapp",
+    "url": "https://johnwu-pro.github.io/calendar/manifest.json"
+  }],
+  "display": "standalone",
+  "background_color": "#f8f8ff",
+  "theme_color": "#a4221a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/nongli-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+    },{
+      "src": "images/nongli-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },{
+      "src": "images/nongli-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

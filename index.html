@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>中华农历 1900~2099</title>
+  <meta name="author" content="John Wu">
+  <meta name="description" content="solar+lunar calendar">
+  <meta name="keywords" content="calendar, lunar calendar, nongli, 日历, 农历, 阴历, 中华农历, 万年历, 四柱, 八字">
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel=stylesheet href="calendar.css?20210801" data-cacheable type="text/css">
+
+  <script src="scripts/global-shared.js?20220815" data-cacheable type="text/javascript"></script>
+  <script src="scripts/state-cache.js?20220815" data-cacheable type="text/javascript"></script>
+  <script src="scripts/window.js?20220813" data-cacheable type="text/javascript"></script>
+  <script src="scripts/config.js?20220812" data-cacheable type="text/javascript"></script>
+  <script src="scripts/solar-calendar.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/lunar-calendar.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/solar-terms.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/ganzhi.js?20210801" data-cacheable type="text/javascript"></script>
+  <script src="scripts/annotation.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/calendar-day.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/calendar-month.js?20210801" data-cacheable type="text/javascript"></script>
+  <script src="scripts/calendar.js?20220815" data-cacheable type="text/javascript"></script>
+  <script src="scripts/date-annotations.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/date-annotations.duty-adjust.js?20211120" data-cacheable type="text/javascript"></script>
+  <script src="scripts/touch-event.js?20210731" data-cacheable type="text/javascript"></script>
+  <script src="scripts/debug.js?20220815" data-cacheable type="text/javascript"></script>
+
+  <script src="install/prompt.js?20220815" data-cacheable type="text/javascript" async></script>
+  <script src="pwa-bootstrap.js?20220815" data-cacheable type="text/javascript" async></script>
+
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<div class="cld">
+  <div class="title">
+    <div>公元<select id="sy"></select>年<select id="sm"></select>月</div>
+    <div id="year">年号99年 农历干支年</div><div id="animal">【属】</div>
+    <div class="help"><a href="javascript:openDoc('help.html', '说明和帮助')" title="说明和帮助">?</a></div>
+  </div>
+  <div class="head">
+  </div>
+  <div class="body">
+  </div>
+  <div class="ctl">
+    <div class="left">
+      <div class="cmd" id="prev-year" onclick="Calendar.prevYear()">ᐊᐊ</div>
+      <div class="cmd" id="prev-month" onclick="Calendar.prevMonth()">ᐊ</div>
+    </div>
+    <div class="center">
+      <div class="cmd" id="today" onclick="Calendar.today()">今天</div>
+    </div>
+    <div class="right">
+      <div class="cmd" id="next-month" onclick="Calendar.nextMonth()">ᐅ</div>
+      <div class="cmd" id="next-year" onclick="Calendar.nextYear()">ᐅᐅ</div>
+    </div>
+  </div>
+  <div class="details">
+  </div>
+</div>
+<div class="flash"></div>
+<div class="copyright">
+  <a href="javascript:openDoc('LICENSE.txt', '版权说明')" title="License Detail">版权所有&copy; 2002-2022</a>
+  <a href="mailto: johnwu.pro@gmail.com" target="_blank">吴菊华</a>,
+  适用版权许可 <a href="https://mozilla.org/MPL/2.0/" target="_blank">MPL-2.0</a>。
+</div>
+<script>State.init().then(Calendar.init)</script>
+</body>
+
+</html>

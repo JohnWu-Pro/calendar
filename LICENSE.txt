@@ -1,0 +1,8 @@
+Chinese Nongli (Chinese Lunar Calendar)
+- Author: Juhua (John) Wu <johnwu.pro@gmail.com>
+- Version: 2.0
+- Date: July 31, 2021
+
+Copyright (C) 2021 Juhua (John) Wu
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
