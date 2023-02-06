@@ -23,24 +23,26 @@
     if(Math.abs(xDelta) > xDeltaThreshold && Math.abs(yDelta) < yDeltaThreshold) {
       event.preventDefault()
       if(xDelta < 0) {
-        Calendar.nextMonth()
+        window.dispatchEvent(new CustomEvent('swiped-left'))
       } else {
-        Calendar.prevMonth()
+        window.dispatchEvent(new CustomEvent('swiped-right'))
       }
     } else if(Math.abs(xDelta) < xDeltaThreshold && Math.abs(yDelta) > yDeltaThreshold) {
       event.preventDefault()
       if(yDelta < 0) {
-        Calendar.nextYear()
+        window.dispatchEvent(new CustomEvent('swiped-up'))
       } else {
-        Calendar.prevYear()
+        window.dispatchEvent(new CustomEvent('swiped-down'))
       }
     }
   }
 
+  //
+  // Initialize
+  //
   document.addEventListener("DOMContentLoaded", () => {
-    const body = $E('body')
-    body.addEventListener('touchstart', onTouchStarted, {passive: false})
-    body.addEventListener('touchend', onTouchEnded, {passive: false})
+    document.body.addEventListener('touchstart', onTouchStarted, {passive: false})
+    document.body.addEventListener('touchend', onTouchEnded, {passive: false})
   })
 
 })()

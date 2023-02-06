@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" sizes="32x32">
+
+  <script src="libs/marked-4.2.5.min.js" data-cacheable type="text/javascript"></script>
+  <script>
+    function params() {
+      const params = opener?.window.crossTabParams?.[location.origin + location.pathname] ?? {}
+      // console.debug("[DEBUG] Params: %s", JSON.stringify(params))
+
+      const uri = ((uri) => {
+        uri = uri || 'README.md'
+        if(RegExp('^https?://\\w+.+$').test(uri)) { // absolute HTTP URI
+          return uri
+        } else if(uri.startsWith('/')) { // origin relative URI
+          return location.origin + uri
+        } else { // page relative URI
+          return location.href.substring(0, location.href.lastIndexOf('/')) + '/' + uri
+        }
+      })(params.uri)
+
+      const title = params.title || ((uri) => {
+        const left = uri.lastIndexOf('/')
+        let right = uri.lastIndexOf('.', left+1)
+        if(right === -1) right = uri.length
+        return uri.substring(left+1, right)
+      })(uri)
+
+      return {title, uri}
+    }
+
+    //
+    // Initialize
+    //
+    document.addEventListener("DOMContentLoaded", () => {
+      const {title, uri} = params()
+      document.title = title
+      fetch(uri)
+        .then((response) => response.text())
+        .then((markdown) => document.body.innerHTML = marked.parse(markdown))
+        .then(() => console.info("[INFO] Loaded %s.", uri))
+        .catch(error => console.error("[ERROR] Error occurred: %o", error))
+    })
+  </script>
+</head>
+
+<body>
+  <h2>Loading ...</h2>
+</body>
+
+</html>

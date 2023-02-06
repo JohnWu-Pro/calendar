@@ -118,11 +118,11 @@ class CalendarMonth {
   initBodyCells(div, rows) {
     let html = ''
     for(let row=0; row<rows; row++) {
-      html += `<div class="row" id="r${row}">`
+      html += /*html*/`<div class="row" id="r${row}">`
       for(let column=0; column<7; column++) {
-        html += `<div class="cell" id="c${row}${column}" onclick="CalendarMonth.current.details(this)"></div>`
+        html += /*html*/`<div class="cell" id="c${row}${column}" onclick="CalendarMonth.current.details(this)"></div>`
       }
-      html += '</div>'
+      html += /*html*/`</div>`
     }
     div.innerHTML = html;
   }

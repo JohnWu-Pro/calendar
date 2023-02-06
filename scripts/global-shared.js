@@ -8,6 +8,8 @@ const HREF_BASE = hrefBase(location)
 const CONTEXT_PATH = contextPath(location)
 const INT_UNDEFINED = -1
 
+const APP_BASE = HREF_BASE
+
 function delay(millis) {
   return new Promise(resolve => setTimeout(resolve, millis))
 }

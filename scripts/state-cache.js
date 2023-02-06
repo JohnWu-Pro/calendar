@@ -2,7 +2,7 @@
 
 self.State = self.State ?? (() => {
 
-const CACHE_NAME = 'cache.nongli.state'
+const CACHE_NAME = 'cache.' + APP_ID + '.state'
 const CACHE_URL = HREF_BASE + '/cache/state.json'
 
 var CACHE = {}

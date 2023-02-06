@@ -58,18 +58,18 @@ class CalendarDay {
       CalendarDay.detailRenderers.get(annotation.type)(this, notes, annotation)
     }
 
-    div.innerHTML = `
-        <div class="content">
-          <div class="date">
-            <div class="solar">公元 ${year}年${month}月${day}日 <span class="${weekdayClass}">${weekdayName}</span></div>
-            <div class="lunar">农历 ${this.lunarDay.lunarMonth.text}${this.lunarDay.text}</div>
-            <div class="ganzhi">子时四柱 ${Ganzhi.fourPillarsOf(this.solarDay)}</div>
-          </div>
-          <div class="notes">${notes.reduce((html, note) => (html + `
-            <div class="${note.classes.join(' ')}">${note.content}</div>`
-          ), '')}</div>
+    div.innerHTML = /*html*/`
+      <div class="content">
+        <div class="date">
+          <div class="solar">公元 ${year}年${month}月${day}日 <span class="${weekdayClass}">${weekdayName}</span></div>
+          <div class="lunar">农历 ${this.lunarDay.lunarMonth.text}${this.lunarDay.text}</div>
+          <div class="ganzhi">子时四柱 ${Ganzhi.fourPillarsOf(this.solarDay)}</div>
         </div>
-        `
+        <div class="notes">${notes.reduce((html, note) => (html + `
+          <div class="${note.classes.join(' ')}">${note.content}</div>`
+        ), '')}</div>
+      </div>
+    `
     $on($E('.content', div))
     .perform('slide-up')
     .then(() => div.innerHTML = '')
@@ -132,11 +132,11 @@ class CalendarDay {
   static UNRESOLVABLE = {
     cell: (div) => {
       div.classList.add('unresolvable')
-      div.innerHTML = `
-          <div class="background"></div>
-          <div class="solar"></div>
-          <div class="note"></div>
-          `
+      div.innerHTML = /*html*/`
+        <div class="background"></div>
+        <div class="solar"></div>
+        <div class="note"></div>
+      `
     },
     details: (div) => {}
   }

@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+:root {
+  --main-font-family: '宋体', 'system-ui';
+}
+
 body {
   margin-top: 24px;
 }
@@ -11,6 +15,10 @@ body {
 a, a:hover, a:visited {
   color: #d0d0d0;
   text-decoration: none;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }
 
 .cld {
@@ -94,7 +102,7 @@ a, a:hover, a:visited {
 }
 .cld .body .cell .note {
   z-index: -5; position: relative;
-  font: normal 12px '宋体';
+  font: normal 12px var(--main-font-family);
   white-space: nowrap;
   margin: 0;
 }
@@ -111,7 +119,7 @@ a, a:hover, a:visited {
   color: limegreen;
 }
 .cld .body .cell .note.first-day {
-  font: bold 11px '宋体';
+  font: bold 11px var(--main-font-family);
 }
 
 .cld .ctl {
@@ -143,7 +151,7 @@ a, a:hover, a:visited {
   border: solid 3px navy;
   border-radius: 3px;
   background-color: navy;
-  font: normal 15px '宋体';
+  font: normal 15px var(--main-font-family);
 }
 .cld .details .content.slide-up {
   transform: translate(0, -105%);
@@ -195,14 +203,26 @@ a, a:hover, a:visited {
   color: navy;
 }
 
-.copyright {
+.footer {
   position: absolute;
   width: 100%;
-  margin: 2px auto;
+  margin: 0.5vmin auto;
   text-align: center;
-  font: 12px 'New Times Roman';
+  font: normal 3vmin var(--main-font-family);
   color: #d0d0d0;
-  top: 667px;
+  top: 92dvh;
+}
+.footer > div:first-child{
+  margin-bottom: 1.2vmin;
+}
+.footer #upgrade > button {
+  border: 1px outset #eaeaea;
+  border-radius: 1vmin;
+  padding: 0.25vmin 1vmin;
+  margin-bottom: 0.25vmin;
+  background-color: white;
+  color: green;
+  cursor: pointer;
 }
 
 .flash {
@@ -222,5 +242,5 @@ a, a:hover, a:visited {
   transition: opacity 1s linear 0.5s;
 }
 .flash .content .hanzi {
-  font: normal 108px '宋体';
+  font: normal 108px var(--main-font-family);
 }

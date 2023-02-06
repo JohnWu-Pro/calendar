@@ -61,7 +61,6 @@ function annotateAdjustments(calendarMonth) {
     monthToDays.set(calendarMonth.solarMonth.next().month, calendarMonth.nextMonthDays)
   }
 
-  var matches
   for(const info of (ADJUSTMENTS.get(year) || [])) {
     const matches = info.match(/^([\-\+])(\d{2})(\d{2})$/)
     if(matches) {

@@ -15,8 +15,34 @@ class Calendar {
   }
 
   static init() {
-    Calendar.$cld = $E('.cld')
-
+    Calendar.$cld = appendElement('div', {className: 'cld'})
+    Calendar.$cld.innerHTML = /*html*/`
+      <div class="title">
+        <div>公元<select id="sy"></select>年<select id="sm"></select>月</div>
+        <div id="year">年号99年 农历干支年</div><div id="animal">【属】</div>
+        <div class="help"><a href="javascript:openMarkdown('中华农历 1900~2099', 'README.md')" title="说明和帮助">?</a></div>
+      </div>
+      <div class="head">
+      </div>
+      <div class="body">
+      </div>
+      <div class="ctl">
+        <div class="left">
+          <div class="cmd" id="prev-year" onclick="Calendar.prevYear()">ᐊᐊ</div>
+          <div class="cmd" id="prev-month" onclick="Calendar.prevMonth()">ᐊ</div>
+        </div>
+        <div class="center">
+          <div class="cmd" id="today" onclick="Calendar.today()">今天</div>
+        </div>
+        <div class="right">
+          <div class="cmd" id="next-month" onclick="Calendar.nextMonth()">ᐅ</div>
+          <div class="cmd" id="next-year" onclick="Calendar.nextYear()">ᐅᐅ</div>
+        </div>
+      </div>
+      <div class="details">
+      </div>
+    `
+    
     Calendar.$year = $ID('sy')
     Calendar.addOptions(Calendar.$year, CONFIG.baseYear, CONFIG.lastYear)
     Calendar.$year.onchange = Calendar.onMonthSelected
@@ -25,23 +51,15 @@ class Calendar {
     Calendar.addOptions(Calendar.$month, 1, 12)
     Calendar.$month.onchange = Calendar.onMonthSelected
 
-    Calendar.$flash = $E('.flash')
-
     Calendar.register(CalendarMonth.annotateLunarMonthFirstDay)
     Calendar.register(CalendarMonth.annotateSolarTerms)
 
-    const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-    $E('body').style.height = viewportHeight + 'px'
-    $E('div.copyright').style.top = Math.max(viewportHeight-36, 400) + 'px'
+    window.addEventListener("swiped-left", Calendar.nextMonth)
+    window.addEventListener("swiped-right", Calendar.prevMonth)
+    window.addEventListener("swiped-up", Calendar.nextYear)
+    window.addEventListener("swiped-down", Calendar.prevYear)
 
-    loadResources(
-      ...Calendar.#resolveDynamicScripts(CONFIG.definedQualifiers, versionOf(Calendar.currentScript))
-    ).then(() => {
-      Calendar.today()
-      console.info("[INFO] Calendar is rendered successfully.")
-    }).catch(error => {
-      console.error("[ERROR] Error occurred: %o", error)
-    })
+    return loadResources(...Calendar.#resolveDynamicScripts(CONFIG.definedQualifiers, versionOf(Calendar.currentScript)))
   }
 
   static addOptions(select, min, max) {
@@ -105,10 +123,10 @@ class Calendar {
   }
 
   static flash(value) {
-    Calendar.$flash.innerHTML = `<div class="content">${value}</div>`
+    Calendar.$flash.innerHTML = /*html*/`<div class="content">${value}</div>`
     $on($E('.content', Calendar.$flash))
-    .perform('fade-out')
-    .then(() => Calendar.$flash.innerHTML = '')
+      .perform('fade-out')
+      .then(() => Calendar.$flash.innerHTML = '')
   }
 
   static locale() {
