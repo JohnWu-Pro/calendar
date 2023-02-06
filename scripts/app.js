@@ -6,8 +6,6 @@ const APP_VERSION = '2.1.0-RC1'
 
 window.App = window.App ?? (() => {
 
-  var activatedVersion
-
   function launch() {
     return State.init()
       .then(Calendar.init)
