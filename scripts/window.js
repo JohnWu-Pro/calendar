@@ -85,10 +85,10 @@ function createElement(tag, attributes) {
 }
 
 window.crossTabParams = {}
-function openMarkdown(title, uri) {
+function openMarkdown(title, markdown, stylesheet) {
   const url = `${APP_BASE}/markdown.html`
 
-  crossTabParams[url] = {title, uri}
+  crossTabParams[url] = {title, markdown, stylesheet}
 
   window.open(url, '_blank', `
     resizable=yes

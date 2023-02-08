@@ -2,8 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <title></title>
 
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" sizes="32x32">
+  <style>
+    :where(*) {
+      font-size: 3vmin;
+    }
+  </style>
 
   <script src="libs/marked-4.2.5.min.js" data-cacheable type="text/javascript"></script>
   <script>
@@ -11,37 +17,34 @@
       const params = opener?.window.crossTabParams?.[location.origin + location.pathname] ?? {}
       // console.debug("[DEBUG] Params: %s", JSON.stringify(params))
 
-      const uri = ((uri) => {
-        uri = uri || 'README.md'
-        if(RegExp('^https?://\\w+.+$').test(uri)) { // absolute HTTP URI
-          return uri
-        } else if(uri.startsWith('/')) { // origin relative URI
-          return location.origin + uri
-        } else { // page relative URI
-          return location.href.substring(0, location.href.lastIndexOf('/')) + '/' + uri
-        }
-      })(params.uri)
+      let {title, markdown, stylesheet} = params
+      markdown = markdown || 'README.md'
 
-      const title = params.title || ((uri) => {
+      title = title || ((uri) => {
         const left = uri.lastIndexOf('/')
         let right = uri.lastIndexOf('.', left+1)
         if(right === -1) right = uri.length
         return uri.substring(left+1, right)
-      })(uri)
+      })(markdown)
 
-      return {title, uri}
+      return {title, markdown, stylesheet}
     }
 
     //
     // Initialize
     //
     document.addEventListener("DOMContentLoaded", () => {
-      const {title, uri} = params()
+      const {title, markdown, stylesheet} = params()
       document.title = title
-      fetch(uri)
+      if(stylesheet) {
+        document.head.appendChild(Object.assign(
+          document.createElement('link'), {href: stylesheet, rel: 'stylesheet', type: 'text/css'}
+        ))
+      }
+      fetch(markdown)
         .then((response) => response.text())
-        .then((markdown) => document.body.innerHTML = marked.parse(markdown))
-        .then(() => console.info("[INFO] Loaded %s.", uri))
+        .then((text) => document.body.innerHTML = marked.parse(text))
+        .then(() => console.info("[INFO] Loaded %s.", markdown))
         .catch(error => console.error("[ERROR] Error occurred: %o", error))
     })
   </script>
