@@ -34,30 +34,27 @@ function annotateSolarDates(calendarMonth, monthDates, weekdays, autoAdjustDuty 
 
   const dutyOffDays = new Map() // MMdd -> duty-off-day
   function setDutyOffDays(month, days, index, type) {
-    if(!(type == Annotation.TYPE_HOLIDAY && autoAdjustDuty)) return
+    if(!(type === Annotation.TYPE_HOLIDAY && autoAdjustDuty)) return
 
     const solarDay = days[index].solarDay
     const weekday = solarDay.weekday()
     const _MMdd = solarDay.getMMdd()
 
     let offDay = null
-    if(dutyOffDays.has(_MMdd) && weekday==1) {
-      offDay = dayAt(month, days, index, -3) // annotate the previous Friday duty-off
-      if(offDay && dutyOffDays.has(offDay.solarDay.getMMdd())) {
-        offDay = dayAt(month, days, index, 1) // annotate the next day (Tuesday) duty-off
-      }
+    if(dutyOffDays.has(_MMdd) && weekday === 1) {
+      offDay = dayAt(month, days, index, 1) // annotate the next day (Tuesday) duty-off
       if(offDay) {
         dutyOffDays.set(offDay.solarDay.getMMdd(), offDay)
       }
       return
     }
 
-    if(weekday == 6) { // Saturday
+    if(weekday === 6) { // Saturday
       offDay = dayAt(month, days, index, -1) // annotate the previous day (Friday) duty-off
       if(offDay && dutyOffDays.has(offDay.solarDay.getMMdd())) {
         offDay = dayAt(month, days, index, 2) // annotate two days after (Monday) duty-off
       }
-    } else if(weekday==0) { // Sunday
+    } else if(weekday === 0) { // Sunday
       offDay = dayAt(month, days, index, 1) // annotate the next day (Monday) duty-off
     } else {
       offDay = days[index] // annotate the non-weekend holiday duty-off
@@ -115,7 +112,7 @@ function annotateLunarDates(calendarMonth) {
       const days = monthToDays.get(parseInt(matches[1],10))
       if(days) {
         let day = parseInt(matches[2],10)
-        if(day == 99) {
+        if(day === 99) {
           const lunarMonth = days[0].lunarDay.lunarMonth
           if(lunarMonth.isLeapMonth || lunarMonth.lunarYear.leapMonth!=lunarMonth.month) {
             day = lunarMonth.length
@@ -142,7 +139,7 @@ function isEffective(year, from, to) {
 }
 
 function parseYearBoundary(boundary, defaultValue) {
-  return (boundary==undefined || boundary==null || boundary=="..") ? defaultValue : parseInt(boundary,10);
+  return (boundary===undefined || boundary===null || boundary==='..') ? defaultValue : parseInt(boundary,10);
 }
 
 const TYPES = new Map([
