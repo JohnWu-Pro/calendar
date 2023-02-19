@@ -121,9 +121,9 @@ async function cacheStaticResources() {
     const uriVersioned = /^.+\?v=[\w\.\-]+$/
     for(const resource of resources) {
       if(deleted.test(resource)) {
-        cache.delete(resource, {ignoreSearch : true})
+        cache.delete(resource, {ignoreSearch: true})
       } else if(uriVersioned.test(resource) || !(await cache.match(resource))) {
-        cache.delete(resource, {ignoreSearch : true})
+        cache.delete(resource, {ignoreSearch: true})
         toBeRefreshed.push(resource.replaceAll('?v=pseudo', ''))
       } else {
         // console.debug("[DEBUG] Resource had already been cached: (%s)", resource)
