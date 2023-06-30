@@ -24,7 +24,7 @@ function annotateSolarDates(calendarMonth, monthDates, weekdays, autoAdjustDuty 
     } else { // offset < 0
       if(index+offset >= 0) return days[index+offset]
 
-      days = monthToDays.has(month-1)
+      days = monthToDays.get(month-1)
       if(! days) return null
 
       index = index+offset + days.length

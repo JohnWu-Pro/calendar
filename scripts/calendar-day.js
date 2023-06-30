@@ -38,7 +38,7 @@ class CalendarDay {
     }
 
     if(this.monthOffset!=0) div.classList.add('out-of-month')
-    div.innerHTML = `
+    div.innerHTML = /*html*/`
         <div class="${model.background.classes.join(' ')}">${model.background.content}</div>
         <div class="${model.solar.classes.join(' ')}">${model.solar.content}</div>
         <div class="${model.note.classes.join(' ')}">${model.note.content || this.lunarDay.text}</div>
@@ -107,8 +107,8 @@ class CalendarDay {
 
   static detailRenderers = new Map([
     [Annotation.TYPE_DUTY_ADJUST, (day, notes, annotation) => {
-      if(! day.annotations.find(it => it.type==Annotation.TYPE_HOLIDAY)) {
-        notes.push({classes: [(annotation.value=='+' ? 'on' : 'off'), 'duty'],
+      if(! day.annotations.find(it => it.type===Annotation.TYPE_HOLIDAY)) {
+        notes.push({classes: [(annotation.value==='+' ? 'on' : 'off'), 'duty'],
             content: annotation.value=='+' ? '调班' : '调休'})
       }
     }],
