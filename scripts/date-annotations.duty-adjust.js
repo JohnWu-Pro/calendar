@@ -52,19 +52,22 @@ const ADJUSTMENTS = new Map([
 function annotateAdjustments(calendarMonth) {
   const year = calendarMonth.solarMonth.solarYear.year
 
+  const year_month = (year, month) => year + '-' + month
+  const keyOf = (solarMonth) => year_month(solarMonth.solarYear.year, solarMonth.month)
+
   const monthToDays = new Map()
   if(calendarMonth.prevMonthDays.length > 0) {
-    monthToDays.set(calendarMonth.solarMonth.prev().month, calendarMonth.prevMonthDays)
+    monthToDays.set(keyOf(calendarMonth.solarMonth.prev()), calendarMonth.prevMonthDays)
   }
-  monthToDays.set(calendarMonth.solarMonth.month, calendarMonth.currMonthDays)
+  monthToDays.set(keyOf(calendarMonth.solarMonth), calendarMonth.currMonthDays)
   if(calendarMonth.nextMonthDays.length > 0) {
-    monthToDays.set(calendarMonth.solarMonth.next().month, calendarMonth.nextMonthDays)
+    monthToDays.set(keyOf(calendarMonth.solarMonth.next()), calendarMonth.nextMonthDays)
   }
 
   for(const info of (ADJUSTMENTS.get(year) || [])) {
     const matches = info.match(/^([\-\+])(\d{2})(\d{2})$/)
     if(matches) {
-      const days = monthToDays.get(parseInt(matches[2],10))
+      const days = monthToDays.get(year_month(year, parseInt(matches[2],10)))
       if(days) {
         const index = parseInt(matches[3],10) - days[0].solarDay.day
         if(0 <= index && index < days.length) {
