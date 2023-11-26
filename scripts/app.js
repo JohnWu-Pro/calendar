@@ -2,7 +2,7 @@
 
 const APP_ID = 'nongli'
 
-const APP_VERSION = '2.1.1'
+const APP_VERSION = '2.2.0'
 
 window.App = window.App ?? (() => {
 
