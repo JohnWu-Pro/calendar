@@ -98,6 +98,7 @@ class CalendarDay {
       model.note.classes.push('solar-term')
       model.note.content = annotation.value
     }],
+    [Annotation.TYPE_CONSTELLATION, (model, annotation) => {}],
     [Annotation.TYPE_LUNAR_MONTH_FIRST_DAY, (model, annotation) => {
       model.note.classes.push('first-day')
       model.note.content = annotation.value
@@ -120,6 +121,9 @@ class CalendarDay {
     }],
     [Annotation.TYPE_SOLAR_TERM, (day, notes, annotation) => {
       notes.push({classes: ['solar-term'], content: annotation.value + ' ' + annotation.time})
+    }],
+    [Annotation.TYPE_CONSTELLATION, (day, notes, annotation) => {
+      notes.push({classes: ['constellation'], content: annotation.value})
     }],
     [Annotation.TYPE_LUNAR_MONTH_FIRST_DAY, (day, notes, annotation) => {}],
     [Annotation.TYPE_MEMO, (day, notes, annotation) => {

@@ -198,6 +198,10 @@ a, a:hover, a:visited {
   background: #e0a0ff;
   color: green;
 }
+.cld .details .notes .constellation {
+  background: #202080;
+  color: palegreen;
+}
 .cld .details .notes .memo {
   background: #ccffcc;
   color: navy;

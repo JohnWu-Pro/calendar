@@ -95,6 +95,27 @@ function annotateSolarDates(calendarMonth, monthDates, weekdays, autoAdjustDuty 
   })
 }
 
+function annotateConstellations(calendarMonth) {
+  const index = calendarMonth.solarMonth.month
+
+  let constellation = Constellation.of(index)
+  for(let day of calendarMonth.prevMonthDays) {
+    day.annotate(Annotation.constellation(constellation))
+  }
+
+  const switchDay = Constellation.switchDay(calendarMonth.solarMonth)
+  for(let day of calendarMonth.currMonthDays) {
+    if(day.solarDay.day === switchDay) {
+      constellation = Constellation.of(index+1)
+    }
+    day.annotate(Annotation.constellation(constellation))
+  }
+
+  for(let day of calendarMonth.nextMonthDays) {
+    day.annotate(Annotation.constellation(constellation))
+  }
+}
+
 function annotateLunarDates(calendarMonth) {
   const year = calendarMonth.solarMonth.solarYear.year
 
@@ -297,5 +318,6 @@ Calendar.annotateSolarDates = annotateSolarDates
 
 Calendar.register((calendarMonth) => Calendar.annotateSolarDates(calendarMonth, SOLAR_MONTH_DATES, SOLAR_WEEKDAYS))
 Calendar.register(annotateLunarDates)
+Calendar.register(annotateConstellations)
 
 })()

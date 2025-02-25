@@ -21,7 +21,7 @@
 // NOTE: Update the SW_VERSION would trigger the Service Worker being updated, and
 // consequently, refresh the static-cachable-resources
 //
-const SW_VERSION = '2.2.1' // Should be kept in sync with the APP_VERSION
+const SW_VERSION = '2.3.0' // Should be kept in sync with the APP_VERSION
 
 const APP_ID = 'nongli'
 

@@ -33,12 +33,17 @@ class Annotation {
     return annotation
   }
 
-  static TYPE_LUNAR_MONTH_FIRST_DAY = 50 // lunar month 1st day
-  static lunarMonthFirstDay(value) {
-    return new Annotation(Annotation.TYPE_LUNAR_MONTH_FIRST_DAY, value)
+  static TYPE_CONSTELLATION = 45 // constellation
+  static constellation(value) {
+    return new Annotation(Annotation.TYPE_CONSTELLATION, value)
   }
 
-  static TYPE_MEMO = 60// memorial day
+  static TYPE_LUNAR_MONTH_FIRST_DAY = 50 // lunar month 1st day
+  static lunarMonthFirstDay(value) {
+    return new Annotation(Annotation.TYPE_LUNAR_MONTH_FIRST_DAY, value, false)
+  }
+
+  static TYPE_MEMO = 60 // memorial day
   static memo(value, isSolarBased = true) {
     return new Annotation(Annotation.TYPE_MEMO, value, isSolarBased)
   }
